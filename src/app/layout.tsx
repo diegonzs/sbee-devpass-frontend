@@ -6,7 +6,7 @@ import { cn } from '@/utils'
 import { UIProvider, Web3Provider, wagmiConfig } from '@/providers'
 import { cookieToInitialState } from 'wagmi'
 import { headers } from 'next/headers'
-import { Footer } from '@/components/layout'
+import { Footer, Header } from '@/components/layout'
 
 const comicSans = localFont({
   src: '../assets/fonts/ComicSansMS3.ttf',
@@ -39,12 +39,13 @@ export default function RootLayout({
         className={cn(
           comicSans.variable,
           inter.variable,
-          'bg-co-bg-1 font-sans',
+          'bg-[#FAF6D8] font-sans',
         )}
       >
         <Web3Provider initialState={initialState}>
           <UIProvider>
             <div className="flex min-h-[100svh] w-full flex-col">
+              <Header />
               <main className="h-full w-full flex-1">{children}</main>
               <Footer />
             </div>
