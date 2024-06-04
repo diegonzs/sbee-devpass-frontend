@@ -28,7 +28,7 @@ const FAQs = [
 export const FAQsSection = () => {
   return (
     <section className="mx-auto flex w-full max-w-[544px] flex-col items-center gap-[70px] pb-[50px] pt-[118px]">
-      <h3 className="text-center text-[40px] font-bold">
+      <h3 className="text-center text-40 font-bold">
         Frequently Asked Questions
       </h3>
       <Accordion variant="splitted">

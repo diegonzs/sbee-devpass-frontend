@@ -36,7 +36,7 @@ export default function Footer() {
               width={24}
               height={24}
               style={{ width: '24px', height: '24px' }}
-            ></Image>
+            />
           </Link>
           <Link href={TWITTER_URL} target="_blank">
             <Image
@@ -45,7 +45,7 @@ export default function Footer() {
               width={24}
               height={24}
               style={{ width: '24px', height: '24px' }}
-            ></Image>
+            />
           </Link>
           <Link href={TELEGRAM_URL} target="_blank">
             <Image
@@ -54,7 +54,7 @@ export default function Footer() {
               width={24}
               height={24}
               style={{ width: '24px', height: '24px' }}
-            ></Image>
+            />
           </Link>
         </div>
         <div className="text-center text-base font-bold text-black">
