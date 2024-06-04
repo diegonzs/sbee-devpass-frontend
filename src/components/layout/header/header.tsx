@@ -24,7 +24,7 @@ const NavigationItem = ({ href, children }: NavigationItemProps) => {
   return (
     <NavbarItem className="flex">
       <Link href={href} className="px-[14px] py-2">
-        <Typography className="font-comic text-base font-bold text-co-text-1">
+        <Typography className="text-base font-bold text-co-text-1">
           {children}
         </Typography>
       </Link>
@@ -35,9 +35,10 @@ const NavigationItem = ({ href, children }: NavigationItemProps) => {
 const Header = () => {
   return (
     <Navbar
+      position="static"
       classNames={{
         base: ['bg-[#FAF6D8]'],
-        wrapper: ['h-[76px] px-10'],
+        wrapper: ['h-[76px] px-10 max-w-[1440px]'],
       }}
     >
       <NavbarBrand>

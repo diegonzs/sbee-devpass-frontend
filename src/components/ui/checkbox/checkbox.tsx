@@ -1,3 +1,4 @@
+'use client'
 import { extendVariants } from '@nextui-org/react'
 import { Checkbox as NextCheckbox } from '@nextui-org/checkbox'
 

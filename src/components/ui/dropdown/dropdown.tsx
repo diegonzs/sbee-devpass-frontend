@@ -1,3 +1,4 @@
+'use client'
 import { extendVariants } from '@nextui-org/react'
 import {
   Dropdown as NextDropdown,

@@ -39,7 +39,7 @@ export default function RootLayout({
         className={cn(
           comicSans.variable,
           inter.variable,
-          'bg-[#FAF6D8] font-sans',
+          'bg-[#FAF6D8] font-comic',
         )}
       >
         <Web3Provider initialState={initialState}>

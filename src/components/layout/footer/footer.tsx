@@ -57,7 +57,7 @@ export default function Footer() {
             ></Image>
           </Link>
         </div>
-        <div className="font-comic text-center text-base font-bold text-black">
+        <div className="text-center text-base font-bold text-black">
           © 2024 SharkBee Coin. All Rights Reserved.
         </div>
       </div>
