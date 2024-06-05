@@ -27,7 +27,9 @@ const HomeFeatureCard = ({
         <h3 className="text-center text-xl font-bold">{title}</h3>
         <p className="text-center text-sm">{description}</p>
         <Link href={href}>
-          <Button className="rounded-lg shadow-button">{buttonLabel}</Button>
+          <Button color="primary" className="rounded-lg shadow-button">
+            {buttonLabel}
+          </Button>
         </Link>
       </div>
     </div>

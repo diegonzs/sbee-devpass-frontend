@@ -47,7 +47,7 @@ export const FAQsSection = () => {
           </AccordionItem>
         ))}
       </Accordion>
-      <Button className="rounded-lg shadow-button">
+      <Button color="primary" className="rounded-lg shadow-button">
         Apply for a grant now
       </Button>
     </section>

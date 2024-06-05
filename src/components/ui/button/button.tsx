@@ -14,6 +14,7 @@ const Button = extendVariants(NextButton, {
       alert: 'text-co-button-primary-text bg-co-alert',
       dark: 'bg-co-button-dark-bg text-co-button-dark-text',
       light: 'bg-co-button-light-bg text-co-button-light-text',
+      white: 'bg-white text-black',
     },
     size: {
       sm: `px-unit-4 py-unit-2 min-w-unit-20 text-sm font-normal 
