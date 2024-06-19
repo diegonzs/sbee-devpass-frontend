@@ -1,2 +1,6 @@
 export { default as AlertTwotoneIcon } from './alert-twotone'
 export { default as ArrowRightUpIcon } from './arrow-right-up'
+export { default as ShareIcon } from './share'
+export { default as OptionDotsIcon } from './option-dots'
+export { default as ExternalIcon } from './external'
+export { default as BackArrowIcon } from './back-arrow'

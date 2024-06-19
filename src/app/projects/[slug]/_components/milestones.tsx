@@ -2,51 +2,12 @@ import { Button } from '@/components/ui'
 import DocumentLineIcon from '@/assets/images/svg/document-line.svg'
 import Image from 'next/image'
 import { ArrowRightUpIcon } from '@/components/shared'
-import MilestoneApprovedStatus from '@/assets/images/png/milestone-approved-status.png'
-import MilestoneInReviewStatus from '@/assets/images/png/milestone-review-status.png'
-import MilestoneLockedStatus from '@/assets/images/png/milestone-locked-status.png'
 import MilestoneLine from '@/assets/images/svg/milestone-line.svg'
 import { cn } from '@/utils'
-
-enum MilestoneStatus {
-  Approved = 'approved',
-  Locked = 'locked',
-  InReview = 'in review',
-  Rejected = 'rejected',
-}
-
-export const statusText = {
-  [MilestoneStatus.Approved]: 'Approved',
-  [MilestoneStatus.Locked]: 'Locked',
-  [MilestoneStatus.InReview]: 'In Review',
-  [MilestoneStatus.Rejected]: 'Rejected',
-}
-
-export const statusColor = {
-  [MilestoneStatus.Approved]: {
-    backgroundColor: '#97C236',
-    textColor: '#fff',
-  },
-  [MilestoneStatus.Locked]: {
-    backgroundColor: '#8A8A8A',
-    textColor: '#fff',
-  },
-  [MilestoneStatus.InReview]: {
-    backgroundColor: '#FFC70F',
-    textColor: '#000',
-  },
-  [MilestoneStatus.Rejected]: {
-    backgroundColor: '#C24736',
-    textColor: '#fff',
-  },
-}
-
-const statusImage = {
-  [MilestoneStatus.Approved]: MilestoneApprovedStatus,
-  [MilestoneStatus.Locked]: MilestoneLockedStatus,
-  [MilestoneStatus.InReview]: MilestoneInReviewStatus,
-  [MilestoneStatus.Rejected]: MilestoneLockedStatus,
-}
+import { MILESTONES } from '@/types'
+import { MilestoneStatusChip } from '@/components/widgets'
+import { routes } from '@/routes'
+import Link from 'next/link'
 
 const MilestoneItem = ({
   order,
@@ -60,18 +21,19 @@ const MilestoneItem = ({
   order: number
   description: string
   title: string
-  status: MilestoneStatus
+  status: MILESTONES.MilestoneStatus
   reward: string
   reviewDate: string
   hideProgress?: boolean
 }) => {
   const grayOutProgress =
-    status === MilestoneStatus.Locked || status === MilestoneStatus.Rejected
+    status === MILESTONES.MilestoneStatus.Locked ||
+    status === MILESTONES.MilestoneStatus.Rejected
   return (
     <div className="flex gap-5 overflow-hidden">
       <div className="relative h-full">
         <Image
-          src={statusImage[status]}
+          src={MILESTONES.statusImage[status]}
           alt="milestone approved status"
           width={85}
           height={73}
@@ -106,34 +68,28 @@ const MilestoneItem = ({
         <p className="text-sm">{description}</p>
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-3">
-            <div
-              style={{
-                backgroundColor: statusColor[status].backgroundColor,
-                color: statusColor[status].textColor,
-              }}
-              className="flex items-center justify-center rounded-[20px] px-3 py-1"
-            >
-              <p className="text-xs font-bold">{statusText[status]}</p>
-            </div>
+            <MilestoneStatusChip status={status} />
             <p className="text-sm">
               {reward} SBEE ● {reviewDate}
             </p>
           </div>
-          {status === MilestoneStatus.InReview && (
-            <Button
-              variant="solid"
-              color="white"
-              startContent={
-                <Image src={DocumentLineIcon} alt="document lined icon" />
-              }
-              endContent={
-                <ArrowRightUpIcon className="text-base text-black/10" />
-              }
-            >
-              Review & vote
-            </Button>
+          {status === MILESTONES.MilestoneStatus.InReview && (
+            <Link href={routes.review('slug')}>
+              <Button
+                variant="solid"
+                color="white"
+                startContent={
+                  <Image src={DocumentLineIcon} alt="document lined icon" />
+                }
+                endContent={
+                  <ArrowRightUpIcon className="text-base text-black/10" />
+                }
+              >
+                Review & vote
+              </Button>
+            </Link>
           )}
-          {status === MilestoneStatus.Rejected && (
+          {status === MILESTONES.MilestoneStatus.Rejected && (
             <Button
               variant="solid"
               color="white"
@@ -144,18 +100,21 @@ const MilestoneItem = ({
               Resubmit Review
             </Button>
           )}
-          {status === MilestoneStatus.Approved && (
-            <Button
-              variant="light"
-              startContent={
-                <Image src={DocumentLineIcon} alt="document lined icon" />
-              }
-              endContent={
-                <ArrowRightUpIcon className="text-base text-black/10" />
-              }
-            >
-              View submission
-            </Button>
+          {status === MILESTONES.MilestoneStatus.Approved && (
+            <Link href={routes.review('slug')}>
+              <Button
+                className="text-black"
+                color="ghost"
+                startContent={
+                  <Image src={DocumentLineIcon} alt="document lined icon" />
+                }
+                endContent={
+                  <ArrowRightUpIcon className="text-base text-black/10" />
+                }
+              >
+                View submission
+              </Button>
+            </Link>
           )}
         </div>
       </div>
@@ -170,7 +129,7 @@ export const Milestones = () => {
         order={1}
         title="Milestone 2"
         description="Lorem ipsum dolor sit amet consectetur. Diam dapibus fermentum in sit ullamcorper tempor. Mauris id odio amet augue at cras placerat. Orci id sagittis a amet enim. Sollicitudin elit ullamcorper viverra quis eleifend urna porta eu egestas. Consectetur quis ultricies congue non nunc urna diam fermentum amet. Velit urna nec cursus id. Malesuada ac senectus blandit orci. Learn more"
-        status={MilestoneStatus.Approved}
+        status={MILESTONES.MilestoneStatus.Approved}
         reward="100k"
         reviewDate="Due 21st Oct 2021"
       />
@@ -178,7 +137,7 @@ export const Milestones = () => {
         order={2}
         title="Milestone 1"
         description="Lorem ipsum dolor sit amet consectetur. Diam dapibus fermentum in sit ullamcorper tempor. Mauris id odio amet augue at cras placerat. Orci id sagittis a amet enim. Sollicitudin elit ullamcorper viverra quis eleifend urna porta eu egestas. Consectetur quis ultricies congue non nunc urna diam fermentum amet. Velit urna nec cursus id. Malesuada ac senectus blandit orci. Learn more"
-        status={MilestoneStatus.InReview}
+        status={MILESTONES.MilestoneStatus.InReview}
         reward="100k"
         reviewDate="Due 21st Oct 2021"
       />
@@ -186,7 +145,7 @@ export const Milestones = () => {
         order={3}
         title="Milestone 3"
         description="Lorem ipsum dolor sit amet consectetur. Diam dapibus fermentum in sit ullamcorper tempor. Mauris id odio amet augue at cras placerat. Orci id sagittis a amet enim. Sollicitudin elit ullamcorper viverra quis eleifend urna porta eu egestas. Consectetur quis ultricies congue non nunc urna diam fermentum amet. Velit urna nec cursus id. Malesuada ac senectus blandit orci. Learn more"
-        status={MilestoneStatus.Rejected}
+        status={MILESTONES.MilestoneStatus.Rejected}
         reward="100k"
         reviewDate="Due 21st Oct 2021"
       />
@@ -195,7 +154,7 @@ export const Milestones = () => {
         hideProgress
         title="Milestone 4"
         description="Lorem ipsum dolor sit amet consectetur. Diam dapibus fermentum in sit ullamcorper tempor. Mauris id odio amet augue at cras placerat. Orci id sagittis a amet enim. Sollicitudin elit ullamcorper viverra quis eleifend urna porta eu egestas. Consectetur quis ultricies congue non nunc urna diam fermentum amet. Velit urna nec cursus id. Malesuada ac senectus blandit orci. Learn more"
-        status={MilestoneStatus.Locked}
+        status={MILESTONES.MilestoneStatus.Locked}
         reward="100k"
         reviewDate="Due 21st Oct 2021"
       />

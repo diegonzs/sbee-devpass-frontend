@@ -53,7 +53,7 @@ const Header = () => {
         </Link>
       </NavbarBrand>
       <NavbarContent className="flex gap-2" justify="center">
-        <NavigationItem href={routes.home}>Beegen</NavigationItem>
+        <NavigationItem href={routes.projects}>Beegen</NavigationItem>
         <NavigationItem href={routes.home}>FAQs</NavigationItem>
         <NavigationItem href={routes.home}>About</NavigationItem>
         <NavigationItem href={routes.home}>Contact</NavigationItem>
